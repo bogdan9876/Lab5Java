@@ -7,17 +7,35 @@ public class FinderTest {
 
     @Test
     void testFindImagesFiles() {
-        String text = "fefefe yy summer2022.png 7k7k summer2022.gif";
-        String searchWord = "summer2022";
+        String text = "misha222.png 1misha222.gif misha222.pnghjjk.png misha222.pngg misha222";
+        String searchWord = "misha";
 
         Finder finder = new Finder();
         String result = finder.findImagesFiles(text, searchWord);
 
-        Assertions.assertEquals("summer2022.png\nsummer2022.gif\n", result);
+        Assertions.assertEquals("misha222.png\n1misha222.gif\nmisha222.pnghjjk.png\n", result);
+    }
 
-        searchWord = "bbb";
-        result = finder.findImagesFiles(text, searchWord);
+    @Test
+    void testEmptyText() {
+        String text = "";
+        String searchWord = "misha";
+
+        Finder finder = new Finder();
+        String result = finder.findImagesFiles(text, searchWord);
+
+        Assertions.assertNull(result);
+    }
+
+    @Test
+    void testWrongSearch() {
+        String text = "misha222.png 7k7k misha222.gif misha222.pnghjjk.png misha222.pngg misha222";
+        String searchWord = "roman333";
+
+        Finder finder = new Finder();
+        String result = finder.findImagesFiles(text, searchWord);
 
         Assertions.assertNull(result);
     }
 }
+
